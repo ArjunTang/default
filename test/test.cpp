@@ -2,11 +2,13 @@
 #include<cmath>
 using namespace std;
 
+template<typename T>
+void f(){
+    if(is_same<T,int>::value)
+        cout<<"int"<<endl;
+    else if(is_same<T,double>::value)
+        cout<<"double"<<endl;
+}
 int main(){
-    int a[10]={0},size=0;
-    a[++size]=1;
-    for(int i=0;i<10;i++){
-        cout<<a[i]<<" ";
-    }
-    return 0;
+    f<int>();
 }
