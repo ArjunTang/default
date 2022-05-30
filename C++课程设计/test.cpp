@@ -222,7 +222,7 @@ void menu1(RegularEmployee* reHead,TemporaryEmployee* teHead) //菜单函数1
     cout<<"\t2.查询员工"<<endl;
     cout<<"\t3.修改信息"<<endl;
     cout<<"\t4.删除员工"<<endl;
-    cout<<"\t请输入对应数字选择功能:"<<endl;
+    cout<<"\t请输入对应数字选择功能:";
     cin>>temp1;
     //子菜单
     switch (temp1)
@@ -230,7 +230,7 @@ void menu1(RegularEmployee* reHead,TemporaryEmployee* teHead) //菜单函数1
     case 1: //添加员工子菜单
         cout<<"\t\t1.添加正式员工"<<endl;
         cout<<"\t\t2.添加临时员工"<<endl;
-        cout<<"\t\t请输入对应数字选择功能:"<<endl;
+        cout<<"\t\t请输入对应数字选择功能:";
         cin>>temp2;
         addEmployee(temp2,reHead,teHead);
         cout<<"添加成功"<<endl;
@@ -239,14 +239,14 @@ void menu1(RegularEmployee* reHead,TemporaryEmployee* teHead) //菜单函数1
         cout<<"\t\t1.按照编号查询"<<endl;
         cout<<"\t\t2.按照姓名查询"<<endl;
         cout<<"\t\t3.按照职务查询"<<endl;
-        cout<<"\t\t请输入对应数字选择功能:"<<endl;
+        cout<<"\t\t请输入对应数字选择功能:";
         cin>>temp2;
         searchEmployee(temp2,reHead,teHead);
         cout<<"查询成功"<<endl;
         break;
     case 3: //修改信息子菜单
         int temp3;
-        cout<<"\t\t请输入要修改的员工编号:"<<endl;
+        cout<<"\t\t请输入要修改的员工编号:";
         cin>>temp2;
         cout<<"\t\t\t1.全部修改"<<endl;
         cout<<"\t\t\t2.修改编号"<<endl;
@@ -263,13 +263,13 @@ void menu1(RegularEmployee* reHead,TemporaryEmployee* teHead) //菜单函数1
         cout<<"\t\t\t13.修改住房公积金"<<endl;
         cout<<"\t\t\t14.修改医疗保险"<<endl;
         cout<<"\t\t\t15.修改奖金"<<endl;
-        cout<<"\t\t\t请输入对应数字选择功能:"<<endl;
+        cout<<"\t\t\t请输入对应数字选择功能:";
         cin>>temp3;
         modifyEmployee(temp2,temp3,reHead,teHead);
         cout<<"修改成功"<<endl;
         break;
     case 4: //删除员工子菜单
-        cout<<"\t\t请输入要删除的员工编号:"<<endl;
+        cout<<"\t\t请输入要删除的员工编号:";
         cin>>temp2;
         deleteEmployee(temp2,reHead,teHead);
         cout<<"删除成功"<<endl;
@@ -282,7 +282,7 @@ void menu2(RegularEmployee* reHead,TemporaryEmployee* teHead) //菜单函数2
     cout<<"\t1.返回主菜单"<<endl;
     cout<<"\t2.保存并退出系统"<<endl;
     cout<<"\t3.直接退出系统"<<endl;
-    cout<<"\t请输入对应数字选择功能:"<<endl;
+    cout<<"\t请输入对应数字选择功能:";
     cin>>temp4;
     switch (temp4)
     {
@@ -327,7 +327,7 @@ void searchEmployee(int flag,RegularEmployee* reHead,TemporaryEmployee* teHead) 
     if(flag==1) //按照编号查询
     {
         int id;
-        cout<<"\t\t\t请输入要查询的员工编号:"<<endl;
+        cout<<"\t\t\t请输入要查询的员工编号:";
         cin>>id;
         while(reTemp->next!=nullptr)
         {
@@ -351,7 +351,7 @@ void searchEmployee(int flag,RegularEmployee* reHead,TemporaryEmployee* teHead) 
     else if(flag==2) //按照姓名查询
     {
         string name;
-        cout<<"\t\t\t请输入要查询的员工姓名:"<<endl;
+        cout<<"\t\t\t请输入要查询的员工姓名:";
         cin>>name;
         while(reTemp->next!=nullptr)
         {
@@ -375,7 +375,7 @@ void searchEmployee(int flag,RegularEmployee* reHead,TemporaryEmployee* teHead) 
     else if(flag==3) //按照职务查询
     {
         Job job;
-        cout<<"\t\t\t请输入要查询的员工职务:"<<endl;
+        cout<<"\t\t\t请输入要查询的员工职务:";
         cin>>(int&)job;
         while(reTemp->next!=nullptr)
         {
@@ -440,116 +440,123 @@ void modifyEmployee(int id,int flag,RegularEmployee* reHead,TemporaryEmployee* t
 template<typename T>
 void modify1(int flag,T* t) //修改员工子函数
 {
-    switch (flag)
-    {
-    case 1: //全部修改
+    if(flag==1){
+        //全部修改
         T temp;
-        cin>>temp;
-        t=new T(temp);
-        break;
-    case 2: //修改编号
+        cin >> temp;
+        t = new T(temp);
+    }
+    else if(flag==2) {
+        //修改编号
         int id;
-        cout<<"\t\t\t\t请输入编号:"<<endl;
-        cin>>id;
+        cout << "\t\t\t\t请输入编号:";
+        cin >> id;
         t->setId(id);
-        break;
-    case 3: //修改姓名
+    }
+    else if(flag==3){
+        //修改姓名
         string name;
-        cout<<"\t\t\t\t请输入姓名:"<<endl;
+        cout<<"\t\t\t\t请输入姓名:";
         cin>>name;
         t->setName(name);
-        break;
-    case 4: //修改性别
+    }
+    else if(flag==4) {
+        //修改性别
         Sex sex;
-        cout<<"\t\t\t\t请输入性别(0.female 1.male):"<<endl;
-        cin>>(int&)sex;
+        cout << "\t\t\t\t请输入性别(0.female 1.male):";
+        cin >> (int &) sex;
         t->setSex(sex);
-        break;
-    case 5: //修改年龄
+    }
+    else if(flag==5){
+        //修改年龄
         int age;
-        cout<<"\t\t\t\t请输入年龄:"<<endl;
+        cout<<"\t\t\t\t请输入年龄:";
         cin>>age;
         t->setAge(age);
-        break;
-    case 6: //修改家庭住址
+    }
+    else if(flag==6){
+        //修改家庭住址
         string address;
-        cout<<"\t\t\t\t请输入家庭住址:"<<endl;
+        cout<<"\t\t\t\t请输入家庭住址:";
         cin>>address;
         t->setAddress(address);
-        break;
-    case 7: //修改职务
-        string job;
-        cout<<"\t\t\t\t请输入职务:"<<endl;
-        cin>>job;
+    }
+    else if(flag==7){
+        //修改职务
+        Job job;
+        cout<<"\t\t\t\t请输入职务:";
+        cin>>(int &)job;
         t->setJob(job);
-        break;
-    case 8: //修改工龄
+    }
+    else if(flag==8){
+        //修改工龄
         int workAge;
-        cout<<"\t\t\t\t请输入工龄:"<<endl;
+        cout<<"\t\t\t\t请输入工龄:";
         cin>>workAge;
-        t->setWorkAge(workAge);
-        break;
-    case 9: //修改基本工资
+        t->setWorkage(workAge);
+    }
+    else if(flag==9){
+        //修改基本工资
         float basicwage;
-        cout<<"\t\t\t\t请输入基本工资:"<<endl;
+        cout<<"\t\t\t\t请输入基本工资:";
         cin>>basicwage;
-        t->setBasicWage(basicwage);
+        t->setBasicwage(basicwage);
         t->setRealPay();
-        break;
-    case 10: //修改所得税
+    }
+    else if(flag==10) {
+        //修改所得税
         float incomeTax;
-        cout<<"\t\t\t\t请输入所得税:"<<endl;
-        cin>>incomeTax;
+        cout << "\t\t\t\t请输入所得税:";
+        cin >> incomeTax;
         t->setIncomeTax(incomeTax);
         t->setRealPay();
-        break;
     }
 }
 void modify2(int flag,RegularEmployee* re) //修改员工子函数
 {
-    switch(flag)
-    {
-    case 11: //修改岗位津贴
+    if(flag==11) {
+
+        //修改岗位津贴
         float postwage;
-        cout<<"\t\t\t\t请输入岗位津贴:"<<endl;
-        cin>>postwage;
+        cout << "\t\t\t\t请输入岗位津贴:";
+        cin >> postwage;
         re->setPostwage(postwage);
         re->setRealPay();
-        break;
-    case 12: //修改养老金
+    }
+    else if(flag==12){
+        //修改养老金
         float pension;
-        cout<<"\t\t\t\t请输入养老金:"<<endl;
+        cout<<"\t\t\t\t请输入养老金:";
         cin>>pension;
         re->setPension(pension);
         re->setRealPay();
-        break;
-    case 13: //修改住房公积金
+    }
+    else if(flag==13){
+        //修改住房公积金
         float housingFund;
-        cout<<"\t\t\t\t请输入住房公积金:"<<endl;
+        cout<<"\t\t\t\t请输入住房公积金:";
         cin>>housingFund;
         re->setHousingFund(housingFund);
         re->setRealPay();
-        break;
-    case 14: //修改医疗保险
+    }
+    else if(flag==14){
+        //修改医疗保险
         float medicalInsurance;
-        cout<<"\t\t\t\t请输入医疗保险:"<<endl;
+        cout<<"\t\t\t\t请输入医疗保险:";
         cin>>medicalInsurance;
         re->setMedicalInsurance(medicalInsurance);
         re->setRealPay();
-        break;
     }
 }
 void modify3(int flag,TemporaryEmployee* te) //修改员工子函数
 {
-    switch(flag)
-    {
-    case 15: //修改奖金
+    if(flag==15){
+        //修改奖金
         float bonus;
-        cout<<"\t\t\t\t请输入奖金:"<<endl;
+        cout<<"\t\t\t\t请输入奖金:";
         cin>>bonus;
         te->setBonus(bonus);
         te->setRealPay();
-        break;
     }
 }
 void deleteEmployee(int id,RegularEmployee* reHead,TemporaryEmployee* teHead) //删除员工函数
